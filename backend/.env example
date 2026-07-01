@@ -1,0 +1,6 @@
+PORT=8000
+
+
+MONGO_URILocal=mongodb://localhost:27017/SummerInternship
+
+MONGO_URIREMOTE=mongodb://localhost:27017/SummerInternship

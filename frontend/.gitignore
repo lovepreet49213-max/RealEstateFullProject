@@ -1,6 +1,0 @@
-node_modules
-backend/.env
-dist
-uploads
-.vscode
-.DS_Store
