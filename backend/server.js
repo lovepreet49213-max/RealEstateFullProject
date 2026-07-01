@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import userSchema from "./models/Users.js";
 import mongoose from "mongoose";
+import { addUser, getAllUsers,updateUser,deleteUser} from "./controller/UserController.js";
 
 dotenv.config();
 
@@ -14,12 +15,8 @@ const app = express();
 
 
 app.use(express.json());
-
-
-
 app.get("/", (req, res) => {
-  res.send("Property Hub API Running");
-  console.log("Property Hub API Running");
+  res.send("API is running...");
 });
 
 app.post("/test", (req, res) => {
@@ -31,25 +28,18 @@ app.post("/test", (req, res) => {
 });
 
 
-app.post("/add-user", (req, res) => {
-  
-  const { name, email, password } = req.body;
-  userSchema.create({ name, email, password })
-    .then((user) => {
-      res.status(201).json({ message: "User added successfully", user });
-    })
-    .catch((error) => {
-      res.status(500).json({ message: "Error adding user", error });
-    });
 
-  // Here you would typically save the user to your database
-    });
-
-
-  
+app.get("/getAllUsers", getAllUsers);
 
 
 
+app.post("/addUser", addUser);
+
+
+  app.put("/updateUser/:id",updateUser);
+
+
+app.delete("/deleteUser/:id",deleteUser);
 
 
 const PORT = process.env.PORT;
