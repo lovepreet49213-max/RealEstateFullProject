@@ -5,14 +5,27 @@ import connectDB from "./config/db.js";
 import userSchema from "./models/Users.js";
 import mongoose from "mongoose";
 import { addUser, getAllUsers,updateUser,deleteUser} from "./controller/UserController.js";
+import Feedback from "./models/feedback.js";
+import { addFeedback } from "./controller/feedbackController.js";
+import { addProperty, getAllProperties, updateProperty, deleteProperty } from "./controller/PropertyController.js";
+import cors from "cors";
+
+
+
 
 dotenv.config();
 
 connectDB();
 
 const app = express();
-
-
+// CORS configuration
+// request coming from http://localhost:5173/addFeedback
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.get("/", (req, res) => {
@@ -28,6 +41,7 @@ app.post("/test", (req, res) => {
 });
 
 
+// User routes
 
 app.get("/getAllUsers", getAllUsers);
 
@@ -40,6 +54,24 @@ app.post("/addUser", addUser);
 
 
 app.delete("/deleteUser/:id",deleteUser);
+
+// Feedback routes
+
+app.post("/addFeedback", addFeedback);
+
+// Property routes
+
+app.post("/addProperty", addProperty);
+
+app.get("/getAllProperties", getAllProperties);
+
+app.put("/updateProperty/:id", updateProperty);
+
+app.delete("/deleteProperty/:id", deleteProperty);
+
+
+
+
 
 
 const PORT = process.env.PORT;

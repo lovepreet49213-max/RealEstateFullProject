@@ -55,6 +55,9 @@ export default function Navbar() {
   <NavLink to="/Contact"  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className={navLinkClass}>
     Contact
   </NavLink>
+  <NavLink to="/Feedback"  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className={navLinkClass}>
+    Feedback
+  </NavLink>
 
 </nav>
 
