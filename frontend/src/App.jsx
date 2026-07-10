@@ -6,7 +6,9 @@ import Contact from "./component/Contact.jsx";
 import LandingPage from "./component/LandingPage.jsx";
 import Listing from "./component/Listing.jsx";
 import PropertyDetail from "./component/PropertyDetail.jsx";
-import Feedback from "./component/Feedback.jsx";
+import Feedback from "./admin/Feedback.jsx";
+import AddProperty from "./admin/AddProperty.jsx";
+import Login from "./admin/Login.jsx";
 
 
 export default function App() {
@@ -21,7 +23,7 @@ export default function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Listing" element={<Listing />} />
         <Route path="/Feedback" element={<Feedback />} />
-        
+       
         {/* Property Detail Route */}
         <Route path="/property/:id" element={<PropertyDetail />} />
 
@@ -34,6 +36,10 @@ export default function App() {
             </div>
           }
         />
+        {/* Admin Login Route */}
+        <Route path="/admin/login" element={<Login />} />
+           <Route path="/admin/add-property" element={<AddProperty />} />
+
       </Routes>
     </Router>
   );

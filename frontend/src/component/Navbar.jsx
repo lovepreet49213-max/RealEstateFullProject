@@ -55,9 +55,11 @@ export default function Navbar() {
   <NavLink to="/Contact"  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className={navLinkClass}>
     Contact
   </NavLink>
-  <NavLink to="/Feedback"  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className={navLinkClass}>
-    Feedback
-  </NavLink>
+  
+  <NavLink to="/admin/login"  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className={navLinkClass}>
+  
+    <button className="font-bold bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded">Login</button>  </NavLink>
+ 
 
 </nav>
 

@@ -9,6 +9,7 @@ import Feedback from "./models/feedback.js";
 import { addFeedback } from "./controller/feedbackController.js";
 import { addProperty, getAllProperties, updateProperty, deleteProperty } from "./controller/PropertyController.js";
 import cors from "cors";
+import { sendEmail } from "./controller/MailController.js";
 
 
 
@@ -68,6 +69,9 @@ app.get("/getAllProperties", getAllProperties);
 app.put("/updateProperty/:id", updateProperty);
 
 app.delete("/deleteProperty/:id", deleteProperty);
+
+app.post("/send-email", sendEmail);
+
 
 
 

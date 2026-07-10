@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { sendMail } from "../apiServices/ContactApi";
 
 
 export default function Contact() {
@@ -14,32 +15,11 @@ export default function Contact() {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-//     try {
-//       await fetch("https://resumewebsitebackend.vercel.app/send-email", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({
-//           to: "support@garagenearme.com",
-//           subject: "Contact Form - GarageGo",
-//           text: `
-// Name: ${form.name}
-// Email: ${form.email}
-
-// Message:
-// ${form.message}
-//           `,
-//         }),
-//       });
-
-//       alert("Message sent successfully!");
-//       setForm({ name: "", email: "", message: "" });
-//     } catch (err) {
-//       alert("Failed to send message");
-//     }
-//   };
+   await sendMail(form);
+  };
 
   return (
     <>
@@ -62,14 +42,14 @@ export default function Contact() {
             Send us a message
           </h2>
 
-          <form  className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <input
               name="name"
               required
               placeholder="Your Name"
               className="w-full border rounded-lg px-4 py-3"
               value={form.name}
-              // onChange={handleChange}
+              onChange={handleChange}
             />
 
             <input
@@ -79,7 +59,7 @@ export default function Contact() {
               placeholder="Your Email"
               className="w-full border rounded-lg px-4 py-3"
               value={form.email}
-              // onChange={handleChange}
+              onChange={handleChange}
             />
 
             <textarea
@@ -89,7 +69,7 @@ export default function Contact() {
               placeholder="Your Message"
               className="w-full border rounded-lg px-4 py-3"
               value={form.message}
-              // onChange={handleChange}
+              onChange={handleChange}
             />
 
             <button
