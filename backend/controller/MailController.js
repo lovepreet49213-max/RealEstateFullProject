@@ -1,7 +1,7 @@
 import express from "express";
 
 import dotenv from "dotenv";
-import transporter from "../utility/Nodemailer.js";
+import transporter from "../utils/Nodemailer.js";
 
 dotenv.config();
 

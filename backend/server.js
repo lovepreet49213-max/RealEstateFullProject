@@ -7,9 +7,15 @@ import mongoose from "mongoose";
 import { addUser, getAllUsers,updateUser,deleteUser} from "./controller/UserController.js";
 import Feedback from "./models/feedback.js";
 import { addFeedback } from "./controller/feedbackController.js";
-import { addProperty, getAllProperties, updateProperty, deleteProperty } from "./controller/PropertyController.js";
+
 import cors from "cors";
 import { sendEmail } from "./controller/MailController.js";
+import propertyRoutes from "./routes/PropertyRoute.js";
+
+
+import path from "path";
+import authRoutes from "./routes/AuthRoutes.js";
+import bookingRoutes from "./routes/BookingRoutes.js";
 
 
 
@@ -19,6 +25,15 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+
+app.use(
+  "/uploads",
+  express.static(path.join(process.cwd(), "uploads"))
+);
+
+
+app.use(express.urlencoded({ extended: true }));
 // CORS configuration
 // request coming from http://localhost:5173/addFeedback
 app.use(
@@ -62,13 +77,11 @@ app.post("/addFeedback", addFeedback);
 
 // Property routes
 
-app.post("/addProperty", addProperty);
+app.use("/property", propertyRoutes);
 
-app.get("/getAllProperties", getAllProperties);
+app.use("/api/auth", authRoutes);
+app.use("/booking", bookingRoutes);
 
-app.put("/updateProperty/:id", updateProperty);
-
-app.delete("/deleteProperty/:id", deleteProperty);
 
 app.post("/send-email", sendEmail);
 

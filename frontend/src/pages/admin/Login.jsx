@@ -34,8 +34,8 @@ export default function Login() {
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
-
-      alert("Login Successful");
+      console.log(res);
+      alert("Login Successful from Admin Panel!");
 
       if (res.data.user.admin) {
         navigate("/admin/dashboard");
@@ -60,6 +60,7 @@ return (
   >
     {/* Overlay */}
     <div className="absolute inset-0 bg-black/70"></div>
+     
 
     <div className="relative z-10 min-h-screen flex">
 
